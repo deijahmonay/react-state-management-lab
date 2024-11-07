@@ -1,9 +1,14 @@
-ul {
+.ul {
   display: flex;
   flex-wrap: wrap;
 }
 
-li {
+.li {
   list-style: none;
   margin: 10px;
+}
+
+.fighterDetails {
+  display: flex;
+  flex-wrap: wrap;
 }

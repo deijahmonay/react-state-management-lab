@@ -9,9 +9,21 @@ const App = () => {
   const [money, setMoney] = useState(100);
   console.log('Our money state variable is: ', money);
 
+  // const ZombieFighter = ({ name, price, strength, agility, img }) => {
+  //   return (
+  //     <li>
+  //       <img src={img} alt={name} />
+  //       <h3>{name}</h3>
+  //       <p>Price: ${price}</p>
+  //       <p>Strength: {strength}</p>
+  //       <p>Agility: {agility}</p>
+  //       <button onClick={() =>{ }}>Add to Team</button>
+  //     </li>
+  //   )
+  // }
 
   const [zombieFighters, setZombieFighters] = useState([
-    
+ 
       {
         name: 'Survivor',
         price: 12,
@@ -84,10 +96,33 @@ const App = () => {
       },
     
   ])
+
+  const HandleAddFighter = () => {
+    console.log('HandleAddFighter')
+  }
+
   return (
-    <h1>Hello world!</h1>
+    <>
+    <h1>Zombie Fighter Recruitment</h1>
+    <h3>Money: {money}</h3>
+
+    <h3>Available Fighters</h3>
+      <div className="fighterDetails">
+        {zombieFighters.map((fighter, index) => (
+          <ul key={index}>
+            <img src={fighter.img} alt={fighter.name} />
+            <li>{fighter.name}</li>
+            <li>Price: ${fighter.price}</li>
+            <li>Strength: {fighter.strength}</li>
+            <li>Agility: {fighter.agility}</li>
+            <li><button onClick={(handleAddFighter) => addToTeam(fighter)}>Add to Team</button></li>
+          </ul>
+        ))}
+      </div>
+    </>
   );
 }
 
 export default App
+
 
