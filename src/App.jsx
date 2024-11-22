@@ -9,18 +9,7 @@ const App = () => {
   const [money, setMoney] = useState(100);
   console.log('Our money state variable is: ', money);
 
-  // const ZombieFighter = ({ name, price, strength, agility, img }) => {
-  //   return (
-  //     <li>
-  //       <img src={img} alt={name} />
-  //       <h3>{name}</h3>
-  //       <p>Price: ${price}</p>
-  //       <p>Strength: {strength}</p>
-  //       <p>Agility: {agility}</p>
-  //       <button onClick={() =>{ }}>Add to Team</button>
-  //     </li>
-  //   )
-  // }
+
 
   const [zombieFighters, setZombieFighters] = useState([
  
@@ -96,10 +85,10 @@ const App = () => {
       },
     
   ])
+  const handleAddFighter = (fighter) => {
+    console.log(fighter);
+  };
 
-  const HandleAddFighter = () => {
-    console.log('HandleAddFighter')
-  }
 
   return (
     <>
@@ -115,7 +104,7 @@ const App = () => {
             <li>Price: ${fighter.price}</li>
             <li>Strength: {fighter.strength}</li>
             <li>Agility: {fighter.agility}</li>
-            <li><button onClick={(handleAddFighter) => addToTeam(fighter)}>Add to Team</button></li>
+            <li><button onClick={() => handleAddFighter(fighter)}>Add to Team</button></li>
           </ul>
         ))}
       </div>
