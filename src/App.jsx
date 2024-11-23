@@ -85,15 +85,21 @@ const App = () => {
       },
     
   ])
-  const handleAddFighter = (fighter) => {
-    console.log(fighter);
-  };
 
+  const handleAddFighter = (fighter) => {
+      if(money >= fighter.price) {
+        setTeam([...team, fighter]);
+        setMoney(money - fighter.price)
+    } else {
+      console.error('Not enough money!')
+    }
+  }
 
   return (
     <>
     <h1>Zombie Fighter Recruitment</h1>
-    <h3>Money: {money}</h3>
+    <p>Team: {team.length}</p>
+    <p>Money: {money}</p>
 
     <h3>Available Fighters</h3>
       <div className="fighterDetails">
@@ -104,7 +110,7 @@ const App = () => {
             <li>Price: ${fighter.price}</li>
             <li>Strength: {fighter.strength}</li>
             <li>Agility: {fighter.agility}</li>
-            <li><button onClick={() => handleAddFighter(fighter)}>Add to Team</button></li>
+            <button onClick={() => handleAddFighter(fighter)}>Add to Team</button>
           </ul>
         ))}
       </div>
