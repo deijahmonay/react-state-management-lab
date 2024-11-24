@@ -85,18 +85,38 @@ const App = () => {
       },
     
   ])
-  
+
+
+  const combinedStrength = (currentTeam) => {
+    const total = currentTeam.reduce((acc, fighter) => acc + fighter.strength, 0)
+    setTotalStrength(total)
+  }
+
+  const combinedAgility = (currentTeam) => {
+  const total = currentTeam.reduce((acc, fighter) => acc + fighter.agility, 0);
+  setTotalAgility(total);
+}
 
   const handleAddFighter = (fighter) => {
       if(money >= fighter.price) {
-        setTeam([...team, fighter]);
-        setMoney(money - fighter.price)
-        setTotalStrength(totalStrength + fighter.strength)
-        setTotalAgility(totalAgility + fighter.agility)
+        const updateTeam = [...team, fighter]
+        setTeam(updateTeam)
+        setMoney((prevMoney) => prevMoney - fighter.price)
+        combinedStrength(updateTeam)
+        combinedAgility(updateTeam)
     } else {
       console.error('Not enough money!')
     }
   }
+
+  const handleRemoveFighter = (fighterRemoval) => {
+    const updatedTeam = team.filter((fighter) => fighter.name !== fighterRemoval.name); 
+    setTeam(updatedTeam);
+    setMoney((prevMoney) => prevMoney + fighterRemoval.price)
+    combinedStrength(updatedTeam);
+    combinedAgility(updatedTeam);
+  };
+
 
   return (
     <>
@@ -115,6 +135,7 @@ const App = () => {
           <li>Price: ${fighter.price}</li>
           <li>Strength: {fighter.strength}</li>
           <li>Agility: {fighter.agility}</li>
+          <button onClick={() => handleRemoveFighter(fighter)}>Remove</button>
         </ul>
         ))}
       </ul>
