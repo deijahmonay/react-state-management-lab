@@ -4,10 +4,9 @@ import './App.css'
 
 const App = () => {
   const [team, setTeam] = useState([]);
-  console.log('Our team state variable is: ', team);
-
   const [money, setMoney] = useState(100);
-  console.log('Our money state variable is: ', money);
+  const [totalStrength, setTotalStrength] = useState(0)
+
 
 
 
@@ -100,6 +99,20 @@ const App = () => {
     <h1>Zombie Fighter Recruitment</h1>
     <p>Team: {team.length}</p>
     <p>Money: {money}</p>
+    <h2>Your Team</h2>
+    {team.length === 0 ? (<p>Pick Some team members!</p>) : (
+      <ul>
+        {team.map((fighter) => (
+          <ul key={fighter.name}>
+          <img src={fighter.img} alt={fighter.name} />
+          <li>{fighter.name}</li>
+          <li>Price: ${fighter.price}</li>
+          <li>Strength: {fighter.strength}</li>
+          <li>Agility: {fighter.agility}</li>
+        </ul>
+        ))}
+      </ul>
+    )}
 
     <h3>Available Fighters</h3>
       <div className="fighterDetails">
